@@ -11,20 +11,19 @@ const TextStyle baseTextStyle = TextStyle(
 
 class CustomTextStyle {
   // Titles
-  /// App bar title1: 24, 1.25, w700, black
+  /// App bar title1: 24, 1.25, w400, black
   static TextStyle title1 = const TextStyle(
-    fontFamily: 'FuzzyBubbles',
-    fontSize: 20,
+    fontFamily: 'GamjaFlower',
+    fontSize: 24,
     height: 1.2,
     color: black,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w400,
   );
   /// App bar title2: 20, 1.25, w700, black
   static TextStyle title2 = baseTextStyle.copyWith(
     fontSize: 20,
     height: 1.2,
-    fontWeight: FontWeight.w800,
-    color: black,
+    fontWeight: FontWeight.w700,
   );
 
   // Headers
@@ -33,21 +32,17 @@ class CustomTextStyle {
     fontSize: 20,
     height: 1.2,
     fontWeight: FontWeight.w700,
-    color: black,
   );
-  /// Header2: 18, 1.2, w700, black
+  /// Header2: 16, 1.2, w700, black
   static TextStyle header2 = baseTextStyle.copyWith(
-    fontSize: 18,
+    fontSize: 16,
     height: 1.2,
     fontWeight: FontWeight.w700,
-    color: black,
   );
-  /// Header3: 16, 1.1875, w700, black
+  /// Header3: 14, 1.1875, w700, black
   static TextStyle header3 = baseTextStyle.copyWith(
-    fontSize: 16,
+    fontSize: 14,
     height: 1.1875,
-    fontWeight: FontWeight.w700,
-    color: black,
   );
 
   // Paragraphs
@@ -55,35 +50,20 @@ class CustomTextStyle {
   static TextStyle paragraph1 = baseTextStyle.copyWith(
     fontSize: 16,
     height: 1.1875,
-    fontWeight: FontWeight.w400,
-    color: black,
   );
-  /// Paragraph2: 14, 1.167, w700, black
+  /// Paragraph2: 14, 1.167, w400, black
   static TextStyle paragraph2 = baseTextStyle.copyWith(
     fontSize: 14,
     height: 1.167,
-    fontWeight: FontWeight.w700,
-    color: black,
   );
-  /// Paragraph3: 14, 1.167, w400, black
+  /// Paragraph3: 12, 1.167, w400, black
   static TextStyle paragraph3 = baseTextStyle.copyWith(
-    fontSize: 14,
+    fontSize: 12,
     height: 1.167,
-    fontWeight: FontWeight.w400,
-    color: black,
   );
-  /// Paragraph4: 12, 1.167, w700, black
+  /// Paragraph4: 10 1.167, w400, black
   static TextStyle paragraph4 = baseTextStyle.copyWith(
-    fontSize: 12,
+    fontSize: 10,
     height: 1.167,
-    fontWeight: FontWeight.w700,
-    color: black,
-  );
-  /// Paragraph5: 12, 1.167, w400, black
-  static TextStyle paragraph5 = baseTextStyle.copyWith(
-    fontSize: 12,
-    height: 1.167,
-    fontWeight: FontWeight.w400,
-    color: black,
   );
 }
