@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="solveconomy_simple"
+        android:label="solvEconomy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
