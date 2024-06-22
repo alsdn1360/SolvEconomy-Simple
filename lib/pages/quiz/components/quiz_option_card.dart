@@ -30,6 +30,8 @@ class QuizOptionCard extends StatelessWidget {
     Color backgroundColor = white;
     IconData? icon;
     Color iconColor;
+    Color textColor;
+    FontWeight fontWeight;
 
     if (isAnswerConfirmed) {
       if (isCorrectAnswer) {
@@ -37,20 +39,28 @@ class QuizOptionCard extends StatelessWidget {
         backgroundColor = green.withOpacity(0.1);
         icon = Icons.check_circle_rounded;
         iconColor = green;
+        textColor = green;
+        fontWeight = FontWeight.w600;
       } else if (isSelected) {
         borderColor = red;
         backgroundColor = red.withOpacity(0.1);
         icon = Icons.cancel_rounded;
         iconColor = red;
+        textColor = red;
+        fontWeight = FontWeight.w600;
       } else {
         borderColor = darkWhite;
         icon = null;
         iconColor = transparent;
+        textColor = black;
+        fontWeight = FontWeight.w400;
       }
     } else {
       borderColor = isSelected ? primary : darkWhite;
       icon = null;
       iconColor = transparent;
+      textColor = isSelected ? primary : black;
+      fontWeight = isSelected ? FontWeight.w600 : FontWeight.w400;
     }
 
     return InkWell(
@@ -66,7 +76,13 @@ class QuizOptionCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(answer, style: CustomTextStyle.body2),
+            Text(
+              answer,
+              style: CustomTextStyle.body2.copyWith(
+                color: textColor,
+                fontWeight: fontWeight,
+              ),
+            ),
             if (icon != null) Icon(icon, color: iconColor, size: 20),
           ],
         ),

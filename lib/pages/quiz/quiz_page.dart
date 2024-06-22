@@ -52,15 +52,13 @@ class _QuizPageState extends State<QuizPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: defaultPaddingM,
-            right: defaultPaddingM,
-            bottom: defaultPaddingL,
+          padding: const EdgeInsets.symmetric(
+            horizontal: defaultPaddingM,
+            vertical: defaultPaddingL,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Spacer(),
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: defaultPaddingM,
@@ -101,7 +99,7 @@ class _QuizPageState extends State<QuizPage> {
                       'A. 한 개의 답을 선택해 주세요.',
                       style: CustomTextStyle.body1,
                     ),
-                    const Gap(defaultGapS),
+                    const Gap(defaultGapM),
                     QuizOptionCard(
                       answer: widget.quizData[_currentIndex].option1,
                       selectedAnswer: _selectedOption,
