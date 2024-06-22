@@ -19,26 +19,24 @@ class HomePage extends StatelessWidget {
           style: CustomTextStyle.header1.copyWith(color: primary),
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPaddingM),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  children: [
-                    Expanded(child: HomeSmallCard(title: 'Quiz')),
-                    Gap(defaultGapL),
-                    Expanded(child: HomeSmallCard(title: 'Review')),
-                  ],
-                ),
-                const Gap(defaultGapL),
-                HomeLargeCard(),
-                const Gap(defaultGapL),
-                HomeNewsCard(),
-              ],
-            ),
+      body: const SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultPaddingM),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(child: HomeSmallCard(title: 'Quiz')),
+                  Gap(defaultGapL),
+                  Expanded(child: HomeSmallCard(title: 'Review')),
+                ],
+              ),
+              Gap(defaultGapL),
+              HomeLargeCard(),
+              Gap(defaultGapL),
+              HomeNewsCard(),
+            ],
           ),
         ),
       ),

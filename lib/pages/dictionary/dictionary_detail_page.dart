@@ -28,7 +28,7 @@ class DictionaryDetailPage extends StatelessWidget {
                 style: CustomTextStyle.title1,
               ),
               const Gap(defaultGapS / 2),
-              const CustomDivider(),
+              const GeneralDivider(),
               const Gap(defaultGapS / 2),
               Text(
                 dictionaryData.description,
