@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/data/quiz_data.dart';
+import 'package:solveconomy_simple/pages/dictionary/dictionary_page.dart';
 import 'package:solveconomy_simple/pages/quiz/quiz_page.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
@@ -16,13 +18,21 @@ class HomeSmallCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()  async {
+      onTap: () async {
         if (title == 'Quiz') {
-          List<QuizData> quizData = await QuizData.loadQuizData('assets/data/quiz_data.json');
+          List<QuizData> quizData = await QuizData.loadQuizData();
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => QuizPage(quizData: quizData)
+              builder: (context) => QuizPage(quizData: quizData),
+            ),
+          );
+        } else {
+          List<DictionaryData> dictionaryData = await DictionaryData.loadDictionaryData();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DictionaryPage(dictionaryData: dictionaryData),
             ),
           );
         }

@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Expanded(child: HomeSmallCard(title: 'Quiz')),
                   Gap(defaultGapL),
-                  Expanded(child: HomeSmallCard(title: 'Review')),
+                  Expanded(child: HomeSmallCard(title: 'Dictionary')),
                 ],
               ),
               Gap(defaultGapL),

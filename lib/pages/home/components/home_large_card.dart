@@ -1,15 +1,12 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/general_widget/general_divider.dart';
 import 'package:solveconomy_simple/general_widget/general_progress_indicator.dart';
 import 'package:solveconomy_simple/pages/dictionary/dictionary_detail_page.dart';
-import 'package:solveconomy_simple/pages/dictionary/dictionary_page.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
@@ -58,23 +55,7 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => DictionaryPage(dictionaryData: dictionaryData),
-                      ),
-                    );
-                  },
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Dictionary', style: CustomTextStyle.title3),
-                      const Spacer(),
-                      const Icon(Icons.chevron_right_rounded),
-                    ],
-                  ),
-                ),
+                Text('Random Word', style: CustomTextStyle.title3),
                 const Gap(defaultGapS / 2),
                 const GeneralDivider(),
                 const Gap(defaultGapS / 2),
