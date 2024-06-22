@@ -15,14 +15,14 @@ class IntroduceWord extends StatelessWidget {
         RichText(
           text: TextSpan(
             children: [
-              TextSpan(text: '어려운 경제 용어\n', style: CustomTextStyle.header1),
+              TextSpan(text: '어려운 경제 용어\n', style: CustomTextStyle.title1),
               TextSpan(
                 text: '솔브이코노미',
-                style: CustomTextStyle.header1.copyWith(color: primary),
+                style: CustomTextStyle.title1.copyWith(color: primary),
               ),
               TextSpan(
                 text: '로 풀어보기',
-                style: CustomTextStyle.header1,
+                style: CustomTextStyle.title1,
               ),
             ],
           ),
@@ -30,7 +30,7 @@ class IntroduceWord extends StatelessWidget {
         const Gap(defaultGapS / 2),
         Text(
           '어렵기만 했던 경제 용어\n솔브이코노미로 쉽게 친해져보세요!',
-          style: CustomTextStyle.paragraph3.copyWith(color: darkGray),
+          style: CustomTextStyle.body3.copyWith(color: darkGray),
         ),
       ],
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:solveconomy_simple/pages/home/home_page.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
@@ -12,11 +11,9 @@ class StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacement(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => const HomePage(),
-          ),
+        Navigator.of(context).pushAndRemoveUntil(
+          CupertinoPageRoute(builder: (context) => const HomePage()),
+          (Route<dynamic> route) => false,
         );
       },
       child: Container(
@@ -27,8 +24,8 @@ class StartButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            '시작하기',
-            style: CustomTextStyle.header2.copyWith(color: primary),
+            '시작 하기',
+            style: CustomTextStyle.title2.copyWith(color: primary),
           ),
         ),
       ),

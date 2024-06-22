@@ -11,59 +11,63 @@ const TextStyle baseTextStyle = TextStyle(
 
 class CustomTextStyle {
   // Titles
-  /// App bar title1: 24, 1.25, w400, black
-  static TextStyle title1 = const TextStyle(
+  /// header1 28px, 1.21, 400, GamjaFlower
+  static TextStyle header1 = const TextStyle(
     fontFamily: 'GamjaFlower',
-    fontSize: 24,
-    height: 1.2,
+    fontSize: 28,
+    height: 1.21,
     color: black,
     fontWeight: FontWeight.w400,
   );
-  /// App bar title2: 20, 1.25, w700, black
-  static TextStyle title2 = baseTextStyle.copyWith(
-    fontSize: 20,
-    height: 1.2,
+  /// header2 22px, 1.27, 700, Pretendard
+  static TextStyle header2 = baseTextStyle.copyWith(
+    fontSize: 22,
+    height: 1.27,
     fontWeight: FontWeight.w700,
   );
 
   // Headers
-  /// Header1: 20, 1.2, w700, black
-  static TextStyle header1 = baseTextStyle.copyWith(
+  /// title1 22px, 1.22, 600, Pretendard
+  static TextStyle title1 = baseTextStyle.copyWith(
+    fontSize: 22,
+    height: 1.22,
+    fontWeight: FontWeight.w600,
+  );
+  /// title2 20px, 1.25, 600, Pretendard
+  static TextStyle title2 = baseTextStyle.copyWith(
     fontSize: 20,
-    height: 1.2,
-    fontWeight: FontWeight.w700,
+    height: 1.25,
+    fontWeight: FontWeight.w600,
   );
-  /// Header2: 16, 1.2, w700, black
-  static TextStyle header2 = baseTextStyle.copyWith(
-    fontSize: 16,
-    height: 1.2,
-    fontWeight: FontWeight.w700,
-  );
-  /// Header3: 14, 1.1875, w700, black
-  static TextStyle header3 = baseTextStyle.copyWith(
-    fontSize: 14,
-    height: 1.1875,
+  /// title3 18px, 1.27, 600, Pretendard
+  static TextStyle title3 = baseTextStyle.copyWith(
+    fontSize: 18,
+    height: 1.27,
+    fontWeight: FontWeight.w600,
   );
 
   // Paragraphs
-  /// Paragraph1: 16, 1.1875, w400, black
-  static TextStyle paragraph1 = baseTextStyle.copyWith(
+  /// body1 16px, 1.25, 600, Pretendard
+  static TextStyle body1 = baseTextStyle.copyWith(
     fontSize: 16,
-    height: 1.1875,
+    height: 1.25,
+    fontWeight: FontWeight.w600,
   );
-  /// Paragraph2: 14, 1.167, w400, black
-  static TextStyle paragraph2 = baseTextStyle.copyWith(
+  /// body2 16px, 1.25, 400, Pretendard
+  static TextStyle body2 = baseTextStyle.copyWith(
+    fontSize: 16,
+    height: 1.25,
+  );
+  /// body3 14px, 1.28, 400, Pretendard
+  static TextStyle body3 = baseTextStyle.copyWith(
     fontSize: 14,
-    height: 1.167,
+    height: 1.28,
   );
-  /// Paragraph3: 12, 1.167, w400, black
-  static TextStyle paragraph3 = baseTextStyle.copyWith(
+
+  // Captions
+  /// caption1 12px, 1.25, 400, Pretendard
+  static TextStyle caption1 = baseTextStyle.copyWith(
     fontSize: 12,
-    height: 1.167,
-  );
-  /// Paragraph4: 10 1.167, w400, black
-  static TextStyle paragraph4 = baseTextStyle.copyWith(
-    fontSize: 10,
-    height: 1.167,
+    height: 1.25,
   );
 }

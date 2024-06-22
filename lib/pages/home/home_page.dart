@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'solvEconomy',
-          style: CustomTextStyle.title1.copyWith(color: primary),
+          style: CustomTextStyle.header1.copyWith(color: primary),
         ),
       ),
     );

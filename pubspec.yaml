@@ -31,8 +31,8 @@ flutter:
       fonts:
         - asset: assets/fonts/pretendard/Pretendard-Regular.otf
           weight: 400
-        - asset: assets/fonts/pretendard/Pretendard-Bold.otf
-          weight: 700
+        - asset: assets/fonts/pretendard/Pretendard-SemiBold.otf
+          weight: 600
 
     - family: GamjaFlower
       fonts:
