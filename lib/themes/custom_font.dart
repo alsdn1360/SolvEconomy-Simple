@@ -47,11 +47,11 @@ class CustomTextStyle {
   );
 
   // Paragraphs
-  /// body1 16px, 1.25, 600, Pretendard
+  /// body1 16px, 1.25, 400, Pretendard
   static TextStyle body1 = baseTextStyle.copyWith(
     fontSize: 16,
     height: 1.25,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
   );
   /// body2 16px, 1.25, 400, Pretendard
   static TextStyle body2 = baseTextStyle.copyWith(
