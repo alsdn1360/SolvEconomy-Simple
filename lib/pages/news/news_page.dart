@@ -48,13 +48,15 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Stack(
-        children: [
-          WebViewWidget(
-            controller: controller,
-          ),
-          if (isLoading) const Center(child: GeneralProgressIndicator()),
-        ],
+      body: SafeArea(
+        child: Stack(
+          children: [
+            WebViewWidget(
+              controller: controller,
+            ),
+            if (isLoading) const Center(child: GeneralProgressIndicator()),
+          ],
+        ),
       ),
     );
   }

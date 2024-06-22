@@ -35,14 +35,16 @@ class DictionaryPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPaddingM),
-        child: ListView.builder(
-          itemCount: dictionaryData.length,
-          itemBuilder: (context, index) {
-            final data = dictionaryData[index];
-            return DictionaryCard(dictionaryData: data);
-          },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPaddingM),
+          child: ListView.builder(
+            itemCount: dictionaryData.length,
+            itemBuilder: (context, index) {
+              final data = dictionaryData[index];
+              return DictionaryCard(dictionaryData: data);
+            },
+          ),
         ),
       ),
     );

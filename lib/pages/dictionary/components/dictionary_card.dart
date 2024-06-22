@@ -17,7 +17,7 @@ class DictionaryCard extends StatelessWidget {
     return ListTile(
       title: Text(
         dictionaryData.word,
-        style: CustomTextStyle.body1,
+        style: CustomTextStyle.body2,
       ),
       trailing: const Icon(Icons.chevron_right_rounded),
       contentPadding: EdgeInsets.zero,

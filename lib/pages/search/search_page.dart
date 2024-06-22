@@ -68,14 +68,16 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPaddingM),
-        child: ListView.builder(
-          itemCount: _searchedWords.length,
-          itemBuilder: (context, index) {
-            final word = _searchedWords[index];
-            return DictionaryCard(dictionaryData: word);
-          },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPaddingM),
+          child: ListView.builder(
+            itemCount: _searchedWords.length,
+            itemBuilder: (context, index) {
+              final word = _searchedWords[index];
+              return DictionaryCard(dictionaryData: word);
+            },
+          ),
         ),
       ),
     );

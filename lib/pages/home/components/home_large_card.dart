@@ -80,7 +80,7 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
                         style: CustomTextStyle.body3,
                         textAlign: TextAlign.justify,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
+                        maxLines: 2,
                         softWrap: true,
                       ),
                       const Gap(defaultGapS),
