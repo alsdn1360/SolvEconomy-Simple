@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:solveconomy_simple/data/dictionary/dictionary_data.dart';
 import 'package:solveconomy_simple/pages/dictionary/components/dictionary_card.dart';
-import 'package:solveconomy_simple/pages/search/components/search_icon_button.dart';
+import 'package:solveconomy_simple/pages/search/search_page.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
 
 class DictionaryPage extends StatelessWidget {
   final List<DictionaryData> dictionaryData;
 
-  const DictionaryPage({super.key, required this.dictionaryData});
+  const DictionaryPage({
+    super.key,
+    required this.dictionaryData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,18 @@ class DictionaryPage extends StatelessWidget {
           'Dictionary',
           style: CustomTextStyle.header1,
         ),
-        actions: const [SearchIconButton()],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SearchPage(dictionaryData: dictionaryData),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPaddingM),

@@ -15,9 +15,7 @@ import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
 
 class HomeLargeCard extends StatefulWidget {
-  const HomeLargeCard({
-    super.key,
-  });
+  const HomeLargeCard({super.key});
 
   @override
   State<HomeLargeCard> createState() => _HomeLargeCardState();
