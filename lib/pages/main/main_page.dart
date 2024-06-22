@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solveconomy_simple/pages/main/components/introduce_word.dart';
-import 'package:solveconomy_simple/pages/main/components/start_button.dart';
+import 'package:solveconomy_simple/pages/main/components/main_introduce_word.dart';
+import 'package:solveconomy_simple/pages/main/components/main_start_button.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
 
 class MainPage extends StatelessWidget {

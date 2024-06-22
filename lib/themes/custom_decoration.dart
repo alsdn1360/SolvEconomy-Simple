@@ -1,4 +1,4 @@
-/// Padding: 12
+/// Padding: 16
 const double defaultPaddingS = 16.0;
 /// Padding: 20
 const double defaultPaddingM = 20.0;

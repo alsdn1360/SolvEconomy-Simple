@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:solveconomy_simple/data/dictionary/dictionary_data.dart';
+import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/general_widget/general_divider.dart';
 import 'package:solveconomy_simple/general_widget/general_progress_indicator.dart';
 import 'package:solveconomy_simple/pages/dictionary/dictionary_detail_page.dart';
@@ -28,7 +28,7 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
   @override
   void initState() {
     super.initState();
-    _dictionaryData = _loadDictionary();
+    _dictionaryData = DictionaryData.loadDictionaryData();
     _randomIndex = _generateRandomNumber();
   }
 
@@ -119,12 +119,6 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
         },
       ),
     );
-  }
-
-  Future<List<DictionaryData>> _loadDictionary() async {
-    final jsonString = await rootBundle.loadString('assets/data/dictionary_data.json');
-    final jsonResponse = json.decode(jsonString) as List;
-    return jsonResponse.map((entry) => DictionaryData.fromJson(entry)).toList();
   }
 
   int _generateRandomNumber() {

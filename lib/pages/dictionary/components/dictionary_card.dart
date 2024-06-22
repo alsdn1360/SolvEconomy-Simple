@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:solveconomy_simple/data/dictionary/dictionary_data.dart';
+import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/pages/dictionary/dictionary_detail_page.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
 

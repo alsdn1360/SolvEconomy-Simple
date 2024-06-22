@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:solveconomy_simple/data/dictionary/dictionary_data.dart';
+import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/general_widget/general_divider.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';

@@ -33,6 +33,7 @@ flutter:
 
   assets:
     - assets/data/dictionary_data.json
+    - assets/data/quiz_data.json
 
   fonts:
     - family: Pretendard
