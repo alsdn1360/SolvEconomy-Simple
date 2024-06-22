@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:solveconomy_simple/general_widget/general_divider.dart';
+import 'package:solveconomy_simple/general_widget/general_shimmer.dart';
 import 'package:solveconomy_simple/pages/news/news_page.dart';
 import 'package:solveconomy_simple/service/naver_news/naver_news_service.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
@@ -21,7 +22,10 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
   @override
   void initState() {
     super.initState();
-    _news = NaverNewsService().loadNews('경제');
+    _news = Future.delayed(
+      const Duration(milliseconds: 250),
+          () => NaverNewsService().loadNews('경제'),
+    );
   }
 
   @override
@@ -47,7 +51,7 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
             future: _news,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
+                return const GeneralShimmer(itemCount: 5);
               } else if (snapshot.hasError) {
                 return const Center(child: Text('데이터를 불러오는 중 오류가 발생했습니다.'));
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -76,7 +80,7 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
                             style: CustomTextStyle.body1,
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                            maxLines: 1,
                             softWrap: true,
                           ),
                           const Gap(defaultGapS),
@@ -85,7 +89,7 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
                             style: CustomTextStyle.body3,
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
+                            maxLines: 2,
                             softWrap: true,
                           ),
                           const Gap(defaultGapS),

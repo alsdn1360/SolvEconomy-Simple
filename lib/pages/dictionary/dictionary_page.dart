@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/pages/dictionary/components/dictionary_card.dart';
@@ -27,7 +28,7 @@ class DictionaryPage extends StatelessWidget {
             icon: const Icon(Icons.search),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
+                CupertinoPageRoute(
                   builder: (context) => SearchPage(dictionaryData: dictionaryData),
                 ),
               );

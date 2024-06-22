@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/general_widget/general_divider.dart';
-import 'package:solveconomy_simple/general_widget/general_progress_indicator.dart';
+import 'package:solveconomy_simple/general_widget/general_shimmer.dart';
 import 'package:solveconomy_simple/pages/dictionary/dictionary_detail_page.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
@@ -25,7 +25,10 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
   @override
   void initState() {
     super.initState();
-    _dictionaryData = DictionaryData.loadDictionaryData();
+    _dictionaryData = Future.delayed(
+      const Duration(milliseconds: 250),
+      () => DictionaryData.loadDictionaryData(),
+    );
     _randomIndex = _generateRandomNumber();
   }
 
@@ -41,25 +44,25 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
         color: darkWhite,
         borderRadius: BorderRadius.circular(defaultBorderRadiusM),
       ),
-      child: FutureBuilder(
-        future: _dictionaryData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: GeneralProgressIndicator());
-          } else if (snapshot.hasError) {
-            return const Center(child: Text('데이터를 불러오는 중 오류가 발생했습니다.'));
-          } else if (!snapshot.hasData) {
-            return const Center(child: Text('데이터가 없습니다.'));
-          } else {
-            final dictionaryData = snapshot.data!;
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Random Word', style: CustomTextStyle.title3),
-                const Gap(defaultGapS / 2),
-                const GeneralDivider(),
-                const Gap(defaultGapS / 2),
-                InkWell(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Random Word', style: CustomTextStyle.title3),
+          const Gap(defaultGapS / 2),
+          const GeneralDivider(),
+          const Gap(defaultGapS / 2),
+          FutureBuilder(
+            future: _dictionaryData,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const GeneralShimmer(itemCount: 1);
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('데이터를 불러오는 중 오류가 발생했습니다.'));
+              } else if (!snapshot.hasData) {
+                return const Center(child: Text('데이터가 없습니다.'));
+              } else {
+                final dictionaryData = snapshot.data!;
+                return InkWell(
                   onTap: () {
                     Navigator.of(context).push(
                       CupertinoPageRoute(
@@ -93,11 +96,11 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
                       )
                     ],
                   ),
-                ),
-              ],
-            );
-          }
-        },
+                );
+              }
+            },
+          )
+        ],
       ),
     );
   }

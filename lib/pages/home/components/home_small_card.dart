@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/data/quiz_data.dart';
@@ -23,7 +24,7 @@ class HomeSmallCard extends StatelessWidget {
           List<QuizData> quizData = await QuizData.loadQuizData();
           Navigator.push(
             context,
-            MaterialPageRoute(
+            CupertinoPageRoute(
               builder: (context) => QuizPage(quizData: quizData),
             ),
           );
@@ -31,7 +32,7 @@ class HomeSmallCard extends StatelessWidget {
           List<DictionaryData> dictionaryData = await DictionaryData.loadDictionaryData();
           Navigator.push(
             context,
-            MaterialPageRoute(
+            CupertinoPageRoute(
               builder: (context) => DictionaryPage(dictionaryData: dictionaryData),
             ),
           );
