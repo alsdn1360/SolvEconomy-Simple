@@ -32,7 +32,7 @@ class HomeNewsCard extends StatelessWidget {
             shrinkWrap: true,
             itemCount: 5,
             itemBuilder: (context, index) {
-              return GestureDetector(
+              return InkWell(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
