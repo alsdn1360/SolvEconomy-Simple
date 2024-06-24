@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solveconomy_simple/data/quiz_data.dart';
 import 'package:solveconomy_simple/pages/quiz/components/quiz_option_card.dart';
+import 'package:solveconomy_simple/pages/quiz/components/quiz_reset_solved_questions_dialog.dart';
 import 'package:solveconomy_simple/pages/quiz/components/quiz_timer.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
@@ -64,6 +65,19 @@ class _QuizPageState extends State<QuizPage> {
             duration: 60,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return QuizResetSolvedQuestionsDialog(onReset: _resetSolvedQuestions);
+                },
+              );
+            },
+            icon: const Icon(Icons.cached_rounded),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -191,9 +205,17 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
+  Future<void> _resetSolvedQuestions() async {
+    await _prefs.remove('solvedQuestions');
+    setState(() {
+      _solvedQuestions = [];
+      _isPrevious = false;
+    });
+  }
+
   void _randomizeQuestion() {
     setState(() {
-      _currentIndex = Random().nextInt(widget.quizData.length);
+      _currentIndex = 10;
     });
   }
 
