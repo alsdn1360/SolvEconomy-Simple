@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solveconomy_simple/data/quiz_data.dart';
 import 'package:solveconomy_simple/pages/quiz/components/quiz_option_card.dart';
 import 'package:solveconomy_simple/pages/quiz/components/quiz_timer.dart';
@@ -28,13 +29,16 @@ class _QuizPageState extends State<QuizPage> {
   int _currentIndex = 0;
   String? _selectedOption;
   bool _isAnswered = false;
-  // ignore: unused_field
+  bool _isPrevious = false;
   bool _isCorrect = false;
   final GlobalKey<TimerBarState> _timerKey = GlobalKey<TimerBarState>();
+  late SharedPreferences _prefs;
+  List<String> _solvedQuestions = [];
 
   @override
   void initState() {
     super.initState();
+    _loadSolvedQuestions();
     _nextQuestion();
   }
 
@@ -46,6 +50,8 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isSolvedQuestions = _solvedQuestions.contains(widget.quizData[_currentIndex].question);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -61,14 +67,39 @@ class _QuizPageState extends State<QuizPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: defaultPaddingM,
-            vertical: defaultPaddingM * 2,
+          padding: const EdgeInsets.only(
+            left: defaultPaddingM,
+            right: defaultPaddingM,
+            top: defaultPaddingL / 2,
+            bottom: defaultPaddingM * 2,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (isSolvedQuestions && _isPrevious)
+                SizedBox(
+                  width: double.infinity,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '이전에 풀었던 문제예요!',
+                      style: CustomTextStyle.body3.copyWith(color: primary),
+                    ),
+                  ),
+                )
+              else
+                SizedBox(
+                  width: double.infinity,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '이전에 풀었던 문제예요!',
+                      style: CustomTextStyle.body3.copyWith(color: transparent),
+                    ),
+                  ),
+                ),
+              const Gap(defaultGapM),
               Expanded(
                 flex: 2,
                 child: RichText(
@@ -146,6 +177,20 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
+  Future<void> _loadSolvedQuestions() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _solvedQuestions = _prefs.getStringList('solvedQuestions') ?? [];
+    });
+  }
+
+  Future<void> _saveSolvedQuestion(String question) async {
+    if (!_solvedQuestions.contains(question)) {
+      _solvedQuestions.add(question);
+      await _prefs.setStringList('solvedQuestions', _solvedQuestions);
+    }
+  }
+
   void _randomizeQuestion() {
     setState(() {
       _currentIndex = Random().nextInt(widget.quizData.length);
@@ -158,6 +203,7 @@ class _QuizPageState extends State<QuizPage> {
       _selectedOption = null;
       _timerKey.currentState?.resetTimer();
       _randomizeQuestion();
+      _isPrevious = _solvedQuestions.contains(widget.quizData[_currentIndex].question);
     });
   }
 
@@ -165,6 +211,7 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       _isAnswered = true;
       _isCorrect = isCorrect;
+      _saveSolvedQuestion(widget.quizData[_currentIndex].question);
     });
   }
 
