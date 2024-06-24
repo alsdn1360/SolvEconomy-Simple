@@ -27,7 +27,7 @@ class QuizOptionCard extends StatelessWidget {
     bool isCorrectAnswer = answer == correctAnswer;
 
     Color borderColor;
-    Color backgroundColor = white;
+    Color backgroundColor = darkWhite;
     IconData? icon;
     Color iconColor;
     Color textColor;

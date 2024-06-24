@@ -53,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
                 icon: const Icon(Icons.clear_rounded),
                 onPressed: _clearSearch,
               ),
-              contentPadding: const EdgeInsets.only(left: defaultPaddingS),
+              contentPadding: const EdgeInsets.only(left: defaultPaddingM),
               hintText: '궁금한 경제 용어를 입력해 주세요.',
               hintStyle: CustomTextStyle.body3.copyWith(color: gray),
               border: InputBorder.none,

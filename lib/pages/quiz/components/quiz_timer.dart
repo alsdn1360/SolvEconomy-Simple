@@ -36,18 +36,14 @@ class TimerBarState extends State<TimerBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      height: 20,
-      decoration: BoxDecoration(
-        color: darkWhite,
-        borderRadius: BorderRadius.circular(defaultBorderRadiusM),
-      ),
+      height: 1.5,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(defaultBorderRadiusM),
         child: LinearProgressIndicator(
           value: _progress,
-          backgroundColor: white,
+          backgroundColor: transparent,
           color: primary,
         ),
       ),

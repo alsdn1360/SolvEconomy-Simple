@@ -22,20 +22,24 @@ class HomeSmallCard extends StatelessWidget {
       onTap: () async {
         if (title == 'Quiz') {
           List<QuizData> quizData = await QuizData.loadQuizData();
-          Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => QuizPage(quizData: quizData),
-            ),
-          );
+          if (context.mounted) {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => QuizPage(quizData: quizData),
+              ),
+            );
+          }
         } else {
           List<DictionaryData> dictionaryData = await DictionaryData.loadDictionaryData();
-          Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => DictionaryPage(dictionaryData: dictionaryData),
-            ),
-          );
+          if (context.mounted) {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => DictionaryPage(dictionaryData: dictionaryData),
+              ),
+            );
+          }
         }
       },
       child: Container(

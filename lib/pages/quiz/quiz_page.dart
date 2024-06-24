@@ -28,6 +28,7 @@ class _QuizPageState extends State<QuizPage> {
   int _currentIndex = 0;
   String? _selectedOption;
   bool _isAnswered = false;
+  // ignore: unused_field
   bool _isCorrect = false;
   final GlobalKey<TimerBarState> _timerKey = GlobalKey<TimerBarState>();
 
@@ -49,94 +50,83 @@ class _QuizPageState extends State<QuizPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Quiz', style: CustomTextStyle.header1),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.5),
+          child: TimerBar(
+            key: _timerKey,
+            onTimeUp: _onTimeUp,
+            duration: 60,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: defaultPaddingM,
-            vertical: defaultPaddingL,
+            vertical: defaultPaddingM * 2,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: defaultPaddingM,
-                  vertical: defaultPaddingS * 2,
-                ),
-                decoration: BoxDecoration(
-                  color: darkWhite,
-                  borderRadius: BorderRadius.circular(defaultBorderRadiusL),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TimerBar(
-                      key: _timerKey,
-                      onTimeUp: _onTimeUp,
-                      duration: 60,
-                    ),
-                    const Gap(defaultGapL * 2),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Q. ',
-                            style: CustomTextStyle.title2.copyWith(color: primary),
-                          ),
-                          TextSpan(
-                            text: widget.quizData[_currentIndex].question,
-                            style: CustomTextStyle.title2,
-                          ),
-                        ],
+              Expanded(
+                flex: 2,
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Q. ',
+                        style: CustomTextStyle.title2.copyWith(color: primary),
                       ),
-                      textAlign: TextAlign.justify,
-                      softWrap: true,
-                    ),
-                    const Gap(defaultGapL * 2),
-                    Text(
-                      'A. 한 개의 답을 선택해 주세요.',
-                      style: CustomTextStyle.body1,
-                    ),
-                    const Gap(defaultGapM),
-                    QuizOptionCard(
-                      answer: widget.quizData[_currentIndex].option1,
-                      selectedAnswer: _selectedOption,
-                      isAnswerConfirmed: _isAnswered,
-                      isEnabled: !_isAnswered,
-                      onAnswerSelected: _onAnswerSelected,
-                      correctAnswer: widget.quizData[_currentIndex].answer,
-                    ),
-                    const Gap(defaultGapM),
-                    QuizOptionCard(
-                      answer: widget.quizData[_currentIndex].option2,
-                      selectedAnswer: _selectedOption,
-                      isAnswerConfirmed: _isAnswered,
-                      isEnabled: !_isAnswered,
-                      onAnswerSelected: _onAnswerSelected,
-                      correctAnswer: widget.quizData[_currentIndex].answer,
-                    ),
-                    const Gap(defaultGapM),
-                    QuizOptionCard(
-                      answer: widget.quizData[_currentIndex].option3,
-                      selectedAnswer: _selectedOption,
-                      isAnswerConfirmed: _isAnswered,
-                      isEnabled: !_isAnswered,
-                      onAnswerSelected: _onAnswerSelected,
-                      correctAnswer: widget.quizData[_currentIndex].answer,
-                    ),
-                    const Gap(defaultGapM),
-                    QuizOptionCard(
-                      answer: widget.quizData[_currentIndex].option4,
-                      selectedAnswer: _selectedOption,
-                      isAnswerConfirmed: _isAnswered,
-                      isEnabled: !_isAnswered,
-                      onAnswerSelected: _onAnswerSelected,
-                      correctAnswer: widget.quizData[_currentIndex].answer,
-                    ),
-                  ],
+                      TextSpan(
+                        text: widget.quizData[_currentIndex].question,
+                        style: CustomTextStyle.title2,
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.justify,
+                  softWrap: true,
                 ),
+              ),
+              Text(
+                'A. 한 개의 답을 선택해 주세요.',
+                style: CustomTextStyle.body1,
+              ),
+              const Gap(defaultGapM),
+              QuizOptionCard(
+                answer: widget.quizData[_currentIndex].option1,
+                selectedAnswer: _selectedOption,
+                isAnswerConfirmed: _isAnswered,
+                isEnabled: !_isAnswered,
+                onAnswerSelected: _onAnswerSelected,
+                correctAnswer: widget.quizData[_currentIndex].answer,
+              ),
+              const Gap(defaultGapM),
+              QuizOptionCard(
+                answer: widget.quizData[_currentIndex].option2,
+                selectedAnswer: _selectedOption,
+                isAnswerConfirmed: _isAnswered,
+                isEnabled: !_isAnswered,
+                onAnswerSelected: _onAnswerSelected,
+                correctAnswer: widget.quizData[_currentIndex].answer,
+              ),
+              const Gap(defaultGapM),
+              QuizOptionCard(
+                answer: widget.quizData[_currentIndex].option3,
+                selectedAnswer: _selectedOption,
+                isAnswerConfirmed: _isAnswered,
+                isEnabled: !_isAnswered,
+                onAnswerSelected: _onAnswerSelected,
+                correctAnswer: widget.quizData[_currentIndex].answer,
+              ),
+              const Gap(defaultGapM),
+              QuizOptionCard(
+                answer: widget.quizData[_currentIndex].option4,
+                selectedAnswer: _selectedOption,
+                isAnswerConfirmed: _isAnswered,
+                isEnabled: !_isAnswered,
+                onAnswerSelected: _onAnswerSelected,
+                correctAnswer: widget.quizData[_currentIndex].answer,
               ),
               const Spacer(),
               if (_isAnswered)
