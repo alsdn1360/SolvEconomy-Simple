@@ -92,7 +92,7 @@ class _QuizPageState extends State<QuizPage> {
                 'A. 한 개의 답을 선택해 주세요.',
                 style: CustomTextStyle.body1,
               ),
-              const Gap(defaultGapM),
+              const Gap(defaultGapL),
               QuizOptionCard(
                 answer: widget.quizData[_currentIndex].option1,
                 selectedAnswer: _selectedOption,

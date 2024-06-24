@@ -25,7 +25,6 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    _clearSearch();
     _focusNode.requestFocus();
   }
 
@@ -84,8 +83,16 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void _searchWords(String query) {
-    final results =
-        widget.dictionaryData.where((data) => data.word.toLowerCase().contains(query.toLowerCase())).toList();
+    if (query.isEmpty) {
+      setState(() {
+        _searchedWords = [];
+      });
+      return;
+    }
+
+    final results = widget.dictionaryData
+        .where((data) => data.word.toLowerCase().contains(query.toLowerCase()))
+        .toList();
 
     setState(() {
       _searchedWords = results;
