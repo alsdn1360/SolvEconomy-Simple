@@ -8,6 +8,7 @@ class NaverNewsService {
     final response = await http.get(
       url,
       headers: {
+        // 네이버 디벨로퍼의 검색 API 등록 후 사용
         'X-Naver-Client-Id': naverClientId,
         'X-Naver-Client-Secret': naverClientSecret,
       },

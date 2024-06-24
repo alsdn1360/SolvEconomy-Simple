@@ -215,7 +215,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void _randomizeQuestion() {
     setState(() {
-      _currentIndex = 10;
+      _currentIndex = Random().nextInt(widget.quizData.length);
     });
   }
 
