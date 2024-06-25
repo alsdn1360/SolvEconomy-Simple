@@ -7,6 +7,7 @@ import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/general_widget/general_divider.dart';
 import 'package:solveconomy_simple/general_widget/general_shimmer.dart';
 import 'package:solveconomy_simple/pages/dictionary/dictionary_detail_page.dart';
+import 'package:solveconomy_simple/service/dictionary/dictionary_service.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
@@ -27,7 +28,7 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
     super.initState();
     _dictionaryData = Future.delayed(
       const Duration(milliseconds: 250),
-      () => DictionaryData.loadDictionaryData(),
+      () => DictionaryService().loadDictionaryData(),
     );
     _randomIndex = _generateRandomNumber();
   }

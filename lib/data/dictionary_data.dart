@@ -17,10 +17,4 @@ class DictionaryData {
       description: json['description'],
     );
   }
-
-  static Future<List<DictionaryData>> loadDictionaryData() async {
-    final jsonString = await rootBundle.loadString('assets/data/dictionary_data.json');
-    final jsonResponse = json.decode(jsonString) as List;
-    return jsonResponse.map((entry) => DictionaryData.fromJson(entry)).toList();
-  }
 }

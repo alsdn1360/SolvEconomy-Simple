@@ -32,6 +32,7 @@ class _QuizPageState extends State<QuizPage> {
   bool _isAnswered = false;
   bool _isPrevious = false;
   bool _isCorrect = false;
+  bool _isTimeUp = false;
   final GlobalKey<TimerBarState> _timerKey = GlobalKey<TimerBarState>();
   late SharedPreferences _prefs;
   List<String> _solvedQuestions = [];
@@ -39,7 +40,6 @@ class _QuizPageState extends State<QuizPage> {
   @override
   void initState() {
     super.initState();
-    _loadSolvedQuestions();
     _nextQuestion();
   }
 
@@ -51,8 +51,6 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isSolvedQuestions = _solvedQuestions.contains(widget.quizData[_currentIndex].question);
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -85,50 +83,42 @@ class _QuizPageState extends State<QuizPage> {
             left: defaultPaddingM,
             right: defaultPaddingM,
             top: defaultPaddingL / 2,
-            bottom: defaultPaddingM * 2,
+            bottom: defaultPaddingM,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (isSolvedQuestions && _isPrevious)
-                SizedBox(
-                  width: double.infinity,
-                  child: Align(
-                    alignment: Alignment.centerRight,
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
                     child: Text(
-                      '이전에 풀었던 문제예요!',
+                      '푼 문제 수: ${_solvedQuestions.length}문제',
                       style: CustomTextStyle.body3.copyWith(color: primary),
                     ),
                   ),
-                )
-              else
-                SizedBox(
-                  width: double.infinity,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      '이전에 풀었던 문제예요!',
-                      style: CustomTextStyle.body3.copyWith(color: transparent),
-                    ),
-                  ),
-                ),
+                  if (_isPrevious)
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            '이전에 풀었던 문제예요!',
+                            style: CustomTextStyle.body3.copyWith(color: primary),
+                          ),
+                        ),
+                      ),
+                    )
+                ],
+              ),
               const Gap(defaultGapM),
               Expanded(
                 flex: 2,
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Q. ',
-                        style: CustomTextStyle.title2.copyWith(color: primary),
-                      ),
-                      TextSpan(
-                        text: widget.quizData[_currentIndex].question,
-                        style: CustomTextStyle.title2,
-                      ),
-                    ],
-                  ),
+                child: Text(
+                  'Q. ${widget.quizData[_currentIndex].question}',
+                  style: CustomTextStyle.title2,
                   textAlign: TextAlign.justify,
                   softWrap: true,
                 ),
@@ -175,6 +165,28 @@ class _QuizPageState extends State<QuizPage> {
               ),
               const Spacer(),
               if (_isAnswered)
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    _isTimeUp
+                        ? '시간 초과입니다!'
+                        : (_isCorrect ? '정답입니다!' : '틀렸습니다!'),
+                    style: CustomTextStyle.body1.copyWith(
+                        color: _isTimeUp
+                            ? black
+                            : (_isCorrect ? Colors.green : Colors.red)),
+                  ),
+                )
+              else
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '공간 맞추기',
+                    style: CustomTextStyle.body1.copyWith(color: Colors.transparent),
+                  ),
+                ),
+              const Gap(defaultGapL),
+              if (_isAnswered)
                 QuizNextQuestionButton(onNext: _nextQuestion)
               else if (_selectedOption == null)
                 const QuizDeactivatedCheckButton()
@@ -191,16 +203,9 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
-  Future<void> _loadSolvedQuestions() async {
-    _prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _solvedQuestions = _prefs.getStringList('solvedQuestions') ?? [];
-    });
-  }
-
-  Future<void> _saveSolvedQuestion(String question) async {
-    if (!_solvedQuestions.contains(question)) {
-      _solvedQuestions.add(question);
+  Future<void> _saveSolvedQuestion(String answer) async {
+    if (!_solvedQuestions.contains(answer)) {
+      _solvedQuestions.add(answer);
       await _prefs.setStringList('solvedQuestions', _solvedQuestions);
     }
   }
@@ -219,13 +224,16 @@ class _QuizPageState extends State<QuizPage> {
     });
   }
 
-  void _nextQuestion() {
+  Future<void> _nextQuestion() async {
+    _prefs = await SharedPreferences.getInstance();
     setState(() {
+      _solvedQuestions = _prefs.getStringList('solvedQuestions') ?? [];
       _isAnswered = false;
+      _isTimeUp = false;
       _selectedOption = null;
       _timerKey.currentState?.resetTimer();
       _randomizeQuestion();
-      _isPrevious = _solvedQuestions.contains(widget.quizData[_currentIndex].question);
+      _isPrevious = _solvedQuestions.contains(widget.quizData[_currentIndex].answer);
     });
   }
 
@@ -233,7 +241,7 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       _isAnswered = true;
       _isCorrect = isCorrect;
-      _saveSolvedQuestion(widget.quizData[_currentIndex].question);
+      _saveSolvedQuestion(widget.quizData[_currentIndex].answer);
     });
   }
 
@@ -246,7 +254,9 @@ class _QuizPageState extends State<QuizPage> {
 
   void _onTimeUp() {
     setState(() {
+      _isTimeUp = true;
       _isAnswered = true;
+      _saveSolvedQuestion(widget.quizData[_currentIndex].answer);
     });
   }
 }

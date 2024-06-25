@@ -24,7 +24,7 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
     super.initState();
     _news = Future.delayed(
       const Duration(milliseconds: 250),
-          () => NaverNewsService().loadNews('경제'),
+      () => NaverNewsService().loadNews('경제'),
     );
   }
 
@@ -60,14 +60,14 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
                 return ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: snapshot.data!.length < 10 ? snapshot.data!.length : 10,
+                  itemCount: 10,
                   itemBuilder: (context, index) {
-                    final newsItem = snapshot.data![index];
+                    final news = snapshot.data![index];
                     return InkWell(
                       onTap: () {
                         Navigator.of(context).push(
                           CupertinoPageRoute(
-                            builder: (context) => NewsPage(newsUrl: newsItem['link']),
+                            builder: (context) => NewsPage(newsUrl: news['link']),
                           ),
                         );
                       },
@@ -76,7 +76,7 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            _removeTagsAndDecode(newsItem['title']),
+                            _removeTagsAndDecode(news['title']),
                             style: CustomTextStyle.body1,
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
@@ -85,7 +85,7 @@ class _HomeNewsCardState extends State<HomeNewsCard> {
                           ),
                           const Gap(defaultGapS),
                           Text(
-                            _removeTagsAndDecode(newsItem['description']),
+                            _removeTagsAndDecode(news['description']),
                             style: CustomTextStyle.body3,
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,

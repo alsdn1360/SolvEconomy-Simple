@@ -4,6 +4,8 @@ import 'package:solveconomy_simple/data/dictionary_data.dart';
 import 'package:solveconomy_simple/data/quiz_data.dart';
 import 'package:solveconomy_simple/pages/dictionary/dictionary_page.dart';
 import 'package:solveconomy_simple/pages/quiz/quiz_page.dart';
+import 'package:solveconomy_simple/service/dictionary/dictionary_service.dart';
+import 'package:solveconomy_simple/service/quiz/quiz_service.dart';
 import 'package:solveconomy_simple/themes/custom_color.dart';
 import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
@@ -21,7 +23,7 @@ class HomeSmallCard extends StatelessWidget {
     return InkWell(
       onTap: () async {
         if (title == 'Quiz') {
-          List<QuizData> quizData = await QuizData.loadQuizData();
+          List<QuizData> quizData = await QuizService().loadQuizData();
           if (context.mounted) {
             Navigator.push(
               context,
@@ -31,7 +33,7 @@ class HomeSmallCard extends StatelessWidget {
             );
           }
         } else {
-          List<DictionaryData> dictionaryData = await DictionaryData.loadDictionaryData();
+          List<DictionaryData> dictionaryData = await DictionaryService().loadDictionaryData();
           if (context.mounted) {
             Navigator.push(
               context,

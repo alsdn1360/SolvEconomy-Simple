@@ -29,10 +29,4 @@ class QuizData {
       option4: json['option4'],
     );
   }
-
-  static Future<List<QuizData>> loadQuizData() async {
-    final jsonString = await rootBundle.loadString('assets/data/quiz_data.json');
-    final List<dynamic> jsonResponse = json.decode(jsonString);
-    return jsonResponse.map((data) => QuizData.fromJson(data)).toList();
-  }
 }
