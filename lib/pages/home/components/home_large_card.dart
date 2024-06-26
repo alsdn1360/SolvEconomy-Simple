@@ -13,7 +13,12 @@ import 'package:solveconomy_simple/themes/custom_decoration.dart';
 import 'package:solveconomy_simple/themes/custom_font.dart';
 
 class HomeLargeCard extends StatefulWidget {
-  const HomeLargeCard({super.key});
+  final int randomIndex;
+
+  const HomeLargeCard({
+    super.key,
+    required this.randomIndex,
+  });
 
   @override
   State<HomeLargeCard> createState() => _HomeLargeCardState();
@@ -21,7 +26,6 @@ class HomeLargeCard extends StatefulWidget {
 
 class _HomeLargeCardState extends State<HomeLargeCard> {
   late Future<List<DictionaryData>> _dictionaryData;
-  late int _randomIndex;
 
   @override
   void initState() {
@@ -30,7 +34,6 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
       const Duration(milliseconds: 250),
       () => DictionaryService().loadDictionaryData(),
     );
-    _randomIndex = _generateRandomNumber();
   }
 
   @override
@@ -68,7 +71,7 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
                     Navigator.of(context).push(
                       CupertinoPageRoute(
                         builder: (context) => DictionaryDetailPage(
-                          dictionaryData: dictionaryData[_randomIndex],
+                          dictionaryData: dictionaryData[widget.randomIndex],
                         ),
                       ),
                     );
@@ -77,10 +80,10 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(dictionaryData[_randomIndex].word, style: CustomTextStyle.body1),
+                      Text(dictionaryData[widget.randomIndex].word, style: CustomTextStyle.body1),
                       const Gap(defaultGapS),
                       Text(
-                        dictionaryData[_randomIndex].description,
+                        dictionaryData[widget.randomIndex].description,
                         style: CustomTextStyle.body3,
                         textAlign: TextAlign.justify,
                         overflow: TextOverflow.ellipsis,
@@ -104,10 +107,5 @@ class _HomeLargeCardState extends State<HomeLargeCard> {
         ],
       ),
     );
-  }
-
-  int _generateRandomNumber() {
-    final random = Random();
-    return random.nextInt(100) + 1;
   }
 }
